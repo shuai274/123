@@ -1096,8 +1096,7 @@ window.dpPlugins = window.dpPlugins || function (t) {
                     }
                     return items;
                case "nfo":
-    // 处理nfo格式字幕的逻辑
-    break;
+    // 处理nfo格式字幕的逻辑  
                 stext = stext.replace(/\r\n/g, "");
                 regex = /TIME=(\d+):(\d+):(\d+),(\d+),(\d+):(\d+):(\d+),(\d+)\s+.+?\s+(.*)/g;
                 data = stext.split(regex);
