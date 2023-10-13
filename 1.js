@@ -1095,6 +1095,22 @@ window.dpPlugins = window.dpPlugins || function (t) {
                         });
                     }
                     return items;
+               case "nfo":
+    // 处理nfo格式字幕的逻辑
+    break;
+                stext = stext.replace(/\r\n/g, "");
+                regex = /TIME=(\d+):(\d+):(\d+),(\d+),(\d+):(\d+):(\d+),(\d+)\s+.+?\s+(.*)/g;
+                data = stext.split(regex);
+                data.shift();
+               for (let i = 0; i < data.length; i += 9) {
+              items.push({
+                    index: items.length,
+                    startTime: parseTimestamp(data[i], data[i + 1], data[i + 2], data[i + 3]),
+                    endTime: parseTimestamp(data[i + 5], data[i + 6], data[i + 7], data[i + 8]),
+                    text: data[i + 9].trim().replace(/(\\N|\\n)/g, "\n").replace(/{.*?}/g, "")
+    });
+}
+return items; 
                 default:
                     console.error("未知字幕格式，无法解析");
                     console.info(sext, stext);
